@@ -99,20 +99,20 @@ flowchart TD
         A3[GCP Billing API<br/>Free - Optional]
     end
 
-    subgraph B [PROCESSING LAYER - FREE Tools]
+    subgraph B [PROCESSING LAYER ]
         B1[Python Scripts<br/>Free OSS]
         B2[Data Collection &<br/>Waste Calculation]
         B3[Facebook Prophet<br/>Forecasting Free]
     end
 
-    subgraph C [TABLEAU PLATFORM - FREE Trial]
+    subgraph C [TABLEAU PLATFORM ]
         C1[Hyper API<br/>Create .hyper file]
         C2[5-Table Schema<br/>Star Model]
         C3[Semantic Layer<br/>Relationships & Calcs]
         C4[4 Dashboards<br/>Executive, Resource, Optimizer, Team]
     end
 
-    subgraph D [ACTIONS LAYER - FREE APIs]
+    subgraph D [ACTIONS LAYER ]
         D1[Extensions API<br/>Get Dashboard Data]
         D2[Flask API<br/>Generate CLI Scripts]
         D3[VizQL Data Service<br/>REST API Queries]
