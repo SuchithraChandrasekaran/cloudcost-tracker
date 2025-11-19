@@ -88,6 +88,62 @@ One-click automation:
 [Export PDF Report]       → Share with finance team
 ```
 
+## 🏗️ System Architecture
+
+```mermaid
+
+flowchart TD
+    subgraph A [DATA SOURCES - FREE APIs]
+        A1[AWS Cost Explorer<br/>API Free]
+        A2[Azure Cost Management<br/>API Free] 
+        A3[GCP Billing API<br/>Free - Optional]
+    end
+
+    subgraph B [PROCESSING LAYER - FREE Tools]
+        B1[Python Scripts<br/>Free OSS]
+        B2[Data Collection &<br/>Waste Calculation]
+        B3[Facebook Prophet<br/>Forecasting Free]
+    end
+
+    subgraph C [TABLEAU PLATFORM - FREE Trial]
+        C1[Hyper API<br/>Create .hyper file]
+        C2[5-Table Schema<br/>Star Model]
+        C3[Semantic Layer<br/>Relationships & Calcs]
+        C4[4 Dashboards<br/>Executive, Resource, Optimizer, Team]
+    end
+
+    subgraph D [ACTIONS LAYER - FREE APIs]
+        D1[Extensions API<br/>Get Dashboard Data]
+        D2[Flask API<br/>Generate CLI Scripts]
+        D3[VizQL Data Service<br/>REST API Queries]
+        D4[Download .sh files<br/>AWS CLI Commands]
+    end
+
+    A1 --> B1
+    A2 --> B1
+    A3 -.-> B1
+    
+    B1 --> B2
+    B2 --> B3
+    B3 --> C1
+    
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+    
+    C4 --> D1
+    D1 --> D2
+    D2 --> D4
+    C3 --> D3
+
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style A1 fill:#bbdefb
+    style A2 fill:#bbdefb
+    style A3 fill:#bbdefb
+```
 ## 💰 Zero Budget Breakdown
 
 ### **🆓 100% Free Tools & APIs**
