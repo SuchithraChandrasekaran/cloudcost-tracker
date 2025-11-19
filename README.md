@@ -90,60 +90,175 @@ One-click automation:
 
 ## 🏗️ System Architecture
 
+### System Architecture Diagram
+
 ```mermaid
-
-flowchart TD
-    subgraph A [DATA SOURCES - FREE APIs]
-        A1[AWS Cost Explorer<br/>API Free]
-        A2[Azure Cost Management<br/>API Free] 
-        A3[GCP Billing API<br/>Free - Optional]
+flowchart TB
+    subgraph cloud ["☁️ CLOUD PROVIDERS (Free APIs)"]
+        direction LR
+        aws["<b>AWS</b><br/>Cost Explorer API<br/>📊 90 days history<br/>⚡ Real-time"]
+        azure["<b>Azure</b><br/>Cost Management API<br/>📊 Historical + Forecast<br/>⚡ Real-time"]
+        gcp["<b>GCP</b><br/>Billing API<br/>📊 Detailed breakdown<br/>⚡ Optional"]
     end
 
-    subgraph B [PROCESSING LAYER ]
-        B1[Python Scripts<br/>Free OSS]
-        B2[Data Collection &<br/>Waste Calculation]
-        B3[Facebook Prophet<br/>Forecasting Free]
+    subgraph pipeline ["🔧 DATA PIPELINE (Python - Free OSS)"]
+        direction TB
+        collect["<b>Data Collection</b><br/>• boto3 (AWS SDK)<br/>• azure-mgmt-costmanagement<br/>• google-cloud-billing"]
+        enrich["<b>Data Enrichment</b><br/>• Tag extraction<br/>• Utilization metrics<br/>• Resource metadata"]
+        waste["<b>Waste Detection</b><br/>• Idle: CPU <5% for 7+ days<br/>• Oversized: Memory <30%<br/>• Unused: 30+ days inactive"]
+        forecast["<b>AI Forecasting</b><br/>• Facebook Prophet<br/>• 30-day predictions<br/>• 95% confidence intervals"]
     end
 
-    subgraph C [TABLEAU PLATFORM ]
-        C1[Hyper API<br/>Create .hyper file]
-        C2[5-Table Schema<br/>Star Model]
-        C3[Semantic Layer<br/>Relationships & Calcs]
-        C4[4 Dashboards<br/>Executive, Resource, Optimizer, Team]
+    subgraph tableau ["📊 TABLEAU CLOUD (Free Trial)"]
+        direction TB
+        hyper["<b>Hyper API</b><br/>🗃️ Generate .hyper file<br/>⚡ Optimized columnar storage"]
+        schema["<b>Semantic Model</b><br/>📋 5-Table Star Schema:<br/>• Cost_Facts<br/>• Resource_Dim<br/>• Account_Dim<br/>• Time_Dim<br/>• Waste_Dim"]
+        calcs["<b>Calculated Fields</b><br/>🧮 Logic Layer:<br/>• Waste_Score<br/>• Savings_Potential<br/>• ROI_Ratio<br/>• Forecast_Overrun"]
+        viz["<b>4 Dashboards</b><br/>📈 Executive Summary<br/>🔍 Resource Explorer<br/>💡 Optimization Advisor<br/>🏆 Team Performance"]
     end
 
-    subgraph D [ACTIONS LAYER ]
-        D1[Extensions API<br/>Get Dashboard Data]
-        D2[Flask API<br/>Generate CLI Scripts]
-        D3[VizQL Data Service<br/>REST API Queries]
-        D4[Download .sh files<br/>AWS CLI Commands]
+    subgraph actions ["⚡ ACTIONS LAYER (Automation)"]
+        direction LR
+        ext["<b>Extensions API</b><br/>📱 Dashboard Interactions<br/>✅ Get selected rows"]
+        flask["<b>Flask Backend</b><br/>🐍 Python microservice<br/>🔧 Generate CLI scripts"]
+        outputs["<b>Outputs</b><br/>📥 Download .sh files<br/>📨 Slack webhooks<br/>🎫 Jira tickets"]
     end
 
-    A1 --> B1
-    A2 --> B1
-    A3 -.-> B1
+    subgraph integrations ["🔗 OPTIONAL INTEGRATIONS"]
+        direction LR
+        slack["<b>Slack</b><br/>📢 Notify owners<br/>Free webhooks"]
+        jira["<b>Jira</b><br/>🎫 Create tickets<br/>Free API"]
+        vizql["<b>VizQL Service</b><br/>🌐 REST API<br/>External queries"]
+    end
+
+    aws --> collect
+    azure --> collect
+    gcp -.->|Optional| collect
     
-    B1 --> B2
-    B2 --> B3
-    B3 --> C1
+    collect --> enrich
+    enrich --> waste
+    waste --> forecast
+    forecast --> hyper
     
-    C1 --> C2
-    C2 --> C3
-    C3 --> C4
+    hyper --> schema
+    schema --> calcs
+    calcs --> viz
     
-    C4 --> D1
-    D1 --> D2
-    D2 --> D4
-    C3 --> D3
+    viz --> ext
+    ext --> flask
+    flask --> outputs
+    
+    outputs -.-> slack
+    outputs -.-> jira
+    viz -.-> vizql
 
-    style A fill:#e1f5fe
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style A1 fill:#bbdefb
-    style A2 fill:#bbdefb
-    style A3 fill:#bbdefb
+    classDef cloudStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef pipelineStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef tableauStyle fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,color:#000
+    classDef actionsStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef integrationsStyle fill:#fce4ec,stroke:#880e4f,stroke-width:2px,color:#000
+
+    class cloud cloudStyle
+    class pipeline pipelineStyle
+    class tableau tableauStyle
+    class actions actionsStyle
+    class integrations integrationsStyle
 ```
+### DataFlow Sequence
+```mermaid
+sequenceDiagram
+    participant User
+    participant Dashboard
+    participant Extensions
+    participant Flask
+    participant AWS CLI
+
+    User->>Dashboard: 1. Opens Optimization Advisor
+    Dashboard->>Dashboard: 2. Loads data from Hyper file
+    Dashboard->>User: 3. Shows wasteful resources
+    User->>Dashboard: 4. Selects idle EC2 instance
+    User->>Extensions: 5. Clicks "Generate Stop Script"
+    Extensions->>Dashboard: 6. Gets selected row data
+    Extensions->>Flask: 7. POST /generate_script
+    Flask->>Flask: 8. Creates AWS CLI command
+    Flask->>Extensions: 9. Returns .sh file
+    Extensions->>User: 10. Downloads stop-instance.sh
+    User->>AWS CLI: 11. Executes script locally
+    AWS CLI->>User: 12. Instance stopped ✅
+```
+
+### Semantic Model Details
+```mermaid
+erDiagram
+    COST_FACTS ||--o{ RESOURCE_DIM : "belongs_to"
+    COST_FACTS ||--o{ ACCOUNT_DIM : "billed_to"
+    COST_FACTS ||--o{ TIME_DIM : "occurred_on"
+    COST_FACTS ||--o{ WASTE_DIM : "categorized_as"
+
+    COST_FACTS {
+        int fact_id PK
+        date cost_date FK
+        string resource_id FK
+        string account_id FK
+        decimal daily_spend
+        decimal resource_hours
+        decimal utilization_percent
+        decimal waste_amount
+        int waste_category_id FK
+    }
+
+    RESOURCE_DIM {
+        string resource_id PK
+        string resource_type
+        string instance_family
+        string region
+        string availability_zone
+        string environment_tag
+        string owner_tag
+        string cost_center_tag
+    }
+
+    ACCOUNT_DIM {
+        string account_id PK
+        string cloud_provider
+        string account_name
+        string business_unit
+        string environment
+    }
+
+    TIME_DIM {
+        date date_key PK
+        int year
+        int quarter
+        int month
+        int week
+        int day_of_week
+        string month_name
+    }
+
+    WASTE_DIM {
+        int waste_id PK
+        string waste_category
+        string severity
+        string recommendation_text
+        decimal savings_potential
+    }
+```
+### Security & Compliance
+```mermaid
+flowchart LR
+    A[Cloud APIs] -->|Encrypted TLS| B[Local Python]
+    B -->|Local filesystem| C[Hyper File]
+    C -->|HTTPS Upload| D[Tableau Cloud]
+    D -->|Role-based access| E[End Users]
+    
+    style A fill:#ffebee
+    style B fill:#fff3e0
+    style C fill:#e8f5e9
+    style D fill:#e3f2fd
+    style E fill:#f3e5f5
+```
+
 ## 💰 Zero Budget Breakdown
 
 ### **🆓 100% Free Tools & APIs**
@@ -673,36 +788,6 @@ We welcome contributions! Please follow these steps:
 
 ---
 
-## 🐛 Troubleshooting
-
-### **Common Issues**
-
-**Issue:** `boto3.exceptions.NoCredentialsError`
-```bash
-# Solution: Configure AWS credentials
-aws configure
-```
-
-**Issue:** `tableauhyperapi.HyperException: unable to open database file`
-```bash
-# Solution: Ensure write permissions
-chmod 755 data/
-```
-
-**Issue:** `ModuleNotFoundError: No module named 'prophet'`
-```bash
-# Solution: Install dependencies
-pip install -r requirements.txt
-```
-
-### **Getting Help**
-- 📖 Check the [documentation](docs/)
-- 🐛 Search [existing issues](https://github.com/issues)
-- 💬 Join our [Slack community](#)
-- 📧 Email: support@cloudcostsentinel.com
-
----
-
 ## 📊 Sample Dashboards
 
 ### **Executive Summary**
@@ -776,7 +861,7 @@ copies of the Software...
 
 ---
 
-## 📞 Contact
+## Contact
 
 - **Project Link:** [https://github.com/suchithrachandrasekaran/cloudcost-sentinel](https://github.com/yourusername/cloudcost-sentinel)
 - **Demo Video:** [https://youtube.com/watch?v=your-video](https://youtube.com/watch?v=your-video)
