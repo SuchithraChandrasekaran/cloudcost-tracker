@@ -1,0 +1,25 @@
+# CloudCost Sentinel - Python Dependencies
+
+# AWS Integration
+boto3==1.35.36              # AWS SDK for Python (Cost Explorer API)
+botocore==1.35.36          # Low-level AWS service access
+
+# Azure Integration
+azure-mgmt-costmanagement==4.0.1  # Azure Cost Management API
+azure-identity==1.19.0      # Azure authentication
+azure-mgmt-resource==23.1.1 # Azure resource management
+
+# Data Processing
+pandas==2.2.3               # Data manipulation and analysis
+numpy==2.1.3               # Numerical computing support
+
+# Tableau Integration
+tableauhyperapi==0.0.19149  # Create and write Hyper files
+
+# Utilities
+python-dotenv==1.0.1        # Environment variable management
+requests==2.32.3            # HTTP library for API calls
+
+# Optional but Recommended
+openpyxl==3.1.5            # Excel file support (for exports)
+pyarrow==18.0.0            # Faster pandas operations
