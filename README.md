@@ -16,7 +16,7 @@ AI-powered cloud cost optimizer that identifies $500K+ waste, forecasts spending
 
 **Identify $500K+ in cloud waste. Reduce bills by 35%. ROI: Immediate.**
 
-[🎥 Watch Demo](https://youtube.com) • [📊 Live Dashboard](https://tableau.com) • [📝 DevPost](https://devpost.com) • [🐛 Report Bug](https://github.com/issues)
+[🎥 Watch Demo](https://youtube.com) • [📊 Live Dashboard](https://tableau.com) • [📝 DevPost](https://devpost.com) 
 
 </div>
 
@@ -94,14 +94,14 @@ One-click automation:
 
 ```mermaid
 flowchart TB
-    subgraph cloud ["☁️ CLOUD PROVIDERS (Free APIs)"]
+    subgraph cloud ["☁️CLOUD PROVIDERS"]
         direction LR
         aws["<b>AWS</b><br/>Cost Explorer API<br/>📊 90 days history<br/>⚡ Real-time"]
         azure["<b>Azure</b><br/>Cost Management API<br/>📊 Historical + Forecast<br/>⚡ Real-time"]
         gcp["<b>GCP</b><br/>Billing API<br/>📊 Detailed breakdown<br/>⚡ Optional"]
     end
 
-    subgraph pipeline ["🔧 DATA PIPELINE (Python - Free OSS)"]
+    subgraph pipeline ["DATA PIPELINE(Python)"]
         direction TB
         collect["<b>Data Collection</b><br/>• boto3 (AWS SDK)<br/>• azure-mgmt-costmanagement<br/>• google-cloud-billing"]
         enrich["<b>Data Enrichment</b><br/>• Tag extraction<br/>• Utilization metrics<br/>• Resource metadata"]
@@ -109,7 +109,7 @@ flowchart TB
         forecast["<b>AI Forecasting</b><br/>• Facebook Prophet<br/>• 30-day predictions<br/>• 95% confidence intervals"]
     end
 
-    subgraph tableau ["📊 TABLEAU CLOUD (Free Trial)"]
+    subgraph tableau ["📊TABLEAU CLOUD"]
         direction TB
         hyper["<b>Hyper API</b><br/>🗃️ Generate .hyper file<br/>⚡ Optimized columnar storage"]
         schema["<b>Semantic Model</b><br/>📋 5-Table Star Schema:<br/>• Cost_Facts<br/>• Resource_Dim<br/>• Account_Dim<br/>• Time_Dim<br/>• Waste_Dim"]
@@ -117,7 +117,7 @@ flowchart TB
         viz["<b>4 Dashboards</b><br/>📈 Executive Summary<br/>🔍 Resource Explorer<br/>💡 Optimization Advisor<br/>🏆 Team Performance"]
     end
 
-    subgraph actions ["⚡ ACTIONS LAYER (Automation)"]
+    subgraph actions ["⚡ACTIONS LAYER"]
         direction LR
         ext["<b>Extensions API</b><br/>📱 Dashboard Interactions<br/>✅ Get selected rows"]
         flask["<b>Flask Backend</b><br/>🐍 Python microservice<br/>🔧 Generate CLI scripts"]
@@ -259,132 +259,22 @@ flowchart LR
     style E fill:#f3e5f5
 ```
 
-## 💰 Zero Budget Breakdown
+## Tech Stack -**Tools & APIs**
 
-### **🆓 100% Free Tools & APIs**
+| Layer | Technology | Purpose |
+|-------|-----------|---------|
+| **Data Collection** | boto3, azure-mgmt, google-cloud-billing | Multi-cloud API integration |
+| **Processing** | Python 3.9+, Pandas, NumPy | Data transformation & enrichment |
+| **AI/ML** | Facebook Prophet, scikit-learn| Forecasting & anomaly detection |
+| **Storage** | Tableau Hyper API | High-performance data format |
+| **Visualization** | Tableau Cloud (Developer License) | Semantic modeling & dashboards |
+| **Automation** | AWS CLI, Slack Webhooks, Jira REST API | Actionable integrations |
+| **Version Control** | GitHub (Public Repo) | Code repository |
+| **Video Creation** | OBS Studio, DaVinci Resolve  | Demo video production |
+| **Diagrams** | Draw.io, Mermaid.js | Architecture & data model diagrams |
+| **Documentation** | Markdown, GitHub Pages | Project documentation |
 
-#### **Cloud Cost APIs (Core Data Sources)**
-```yaml
-AWS Cost Explorer API:
-  Cost: $0.00
-  Limits: Unlimited requests
-  Data: Last 13 months of billing data
-  Setup: Free tier AWS account + IAM role
 
-Azure Cost Management API:
-  Cost: $0.00  
-  Limits: Unlimited requests
-  Data: Historical billing + forecasts
-  Setup: Free Azure subscription
-
-GCP Cloud Billing API:
-  Cost: $0.00
-  Limits: Unlimited requests  
-  Data: Detailed cost breakdowns
-  Setup: Free GCP account + billing export
-```
-
-#### **Development & Processing**
-```yaml
-Python 3.9+:
-  Cost: $0.00
-  Usage: Data pipeline scripts
-  
-Python Libraries (All Free):
-  - boto3 (AWS SDK)
-  - azure-mgmt-costmanagement
-  - google-cloud-billing
-  - pandas (data manipulation)
-  - prophet (forecasting)
-  - tableauhyperapi (Tableau integration)
-  
-Compute:
-  Location: Your laptop/desktop
-  Cost: $0.00 (one-time data pulls)
-  Runtime: ~10-15 minutes per data refresh
-```
-
-#### **Visualization Platform**
-```yaml
-Tableau Cloud:
-  License: Creator (Developer/Trial)
-  Cost: $0.00 (free trial or student license)
-  Features: Full semantic modeling, 4 dashboards
-  Storage: 15GB included
-  Note: For hackathon, request free developer access
-```
-
-#### **Version Control & Hosting**
-```yaml
-GitHub:
-  Type: Public repository
-  Cost: $0.00
-  Features: Unlimited repos, Actions, Pages
-  
-GitHub Pages:
-  Cost: $0.00
-  Usage: Host documentation site
-```
-
-#### **Video Production**
-```yaml
-OBS Studio:
-  Cost: $0.00
-  Usage: Screen recording (1080p)
-  Platform: Windows/Mac/Linux
-  
-DaVinci Resolve (Free):
-  Cost: $0.00
-  Usage: Video editing + effects
-  Features: Professional-grade editing
-  
-YouTube Audio Library:
-  Cost: $0.00
-  Usage: Royalty-free background music
-  
-YouTube:
-  Cost: $0.00
-  Usage: Host demo video (public/unlisted)
-```
-
-#### **Design & Diagrams**
-```yaml
-Draw.io (diagrams.net):
-  Cost: $0.00
-  Usage: Architecture diagrams
-  
-Mermaid.js:
-  Cost: $0.00  
-  Usage: Inline diagrams in markdown
-  
-Shields.io:
-  Cost: $0.00
-  Usage: README badges
-```
-
-#### **Integrations (Optional)**
-```yaml
-Slack Incoming Webhooks:
-  Cost: $0.00
-  Usage: Send notifications
-  Limits: Unlimited messages (free tier)
-  
-Jira REST API:
-  Cost: $0.00 (with free Jira account)
-  Usage: Create optimization tickets
-  Limits: 10 users free
-```
-
-### **📊 Cost Comparison vs Alternatives**
-
-| Approach | Our Solution | Typical Enterprise | Savings |
-|----------|-------------|-------------------|---------|
-| **Cloud Monitoring** | $0 | $5,000-15,000/year | **100%** |
-| **FinOps Platform** | $0 | $50,000-200,000/year | **100%** |
-| **Consultants** | $0 | $150,000+ (one-time) | **100%** |
-| **BI Tool Licenses** | $0 | $2,000-5,000/user/year | **100%** |
-| **Data Storage** | $0 | $500-2,000/month | **100%** |
-| **Total Annual** | **$0** | **$200K-$500K** | **∞ ROI** |
 
 ### **⚡ Why This Works**
 
@@ -410,28 +300,11 @@ graph LR
     H -->|Actions| I[CLI Scripts / Webhooks]
 ```
 
-### **Technology Stack** (💯 Zero Budget!)
-
-| Layer | Technology | Cost | Purpose |
-|-------|-----------|------|---------|
-| **Data Collection** | boto3, azure-mgmt, google-cloud-billing | **FREE** | Multi-cloud API integration |
-| **Processing** | Python 3.9+, Pandas, NumPy | **FREE** | Data transformation & enrichment |
-| **AI/ML** | Facebook Prophet, scikit-learn | **FREE** | Forecasting & anomaly detection |
-| **Storage** | Tableau Hyper API | **FREE** | High-performance data format |
-| **Visualization** | Tableau Cloud (Developer License) | **FREE** | Semantic modeling & dashboards |
-| **Automation** | AWS CLI, Slack Webhooks, Jira REST API | **FREE** | Actionable integrations |
-| **Version Control** | GitHub (Public Repo) | **FREE** | Code repository |
-| **Video Creation** | OBS Studio, DaVinci Resolve | **FREE** | Demo video production |
-| **Diagrams** | Draw.io, Mermaid.js | **FREE** | Architecture & data model diagrams |
-| **Documentation** | Markdown, GitHub Pages | **FREE** | Project documentation |
-
-**Total Project Cost: $0.00** ✅
-
 ---
 
 ## 📊 Semantic Data Model
 
-Our sophisticated multi-dimensional model:
+The sophisticated multi-dimensional model:
 
 ```
 📦 CloudCost Semantic Model
@@ -643,8 +516,8 @@ IF reserved_instance_coverage < 60% THEN recommend_ri_purchase
 ```
 Annual Cloud Spend:        $3,000,000
 Waste Identified:          $1,200,000 (40%)
-Actionable Savings:          $900,000 (30% of total)
-Implementation Cost:              $0 (free APIs + Tableau license)
+Actionable Savings:        $900,000 (30% of total)
+Implementation Cost:       $0 (free APIs + Tableau license)
 
 ROI = $900,000 / $0 = ∞
 Payback Period = 0 seconds
@@ -677,7 +550,7 @@ cloudcost-sentinel/
 │
 ├── 📂 docs/
 │   ├── architecture.md               # System architecture diagram
-│   ├── semantic-model.md             # Data model documentation
+│   ├── DATA_MODEL.md                 # Data model documentation
 │   ├── api-setup.md                  # Cloud API configuration guide
 │   └── user-guide.md                 # End-user documentation
 │
