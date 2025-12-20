@@ -9,12 +9,17 @@ azure-mgmt-costmanagement==4.0.1  # Azure Cost Management API
 azure-identity==1.19.0      # Azure authentication
 azure-mgmt-resource==23.1.1 # Azure resource management
 
+# GCP Integration
+google-cloud-billing==1.13.3  # GCP Billing API
+google-cloud-resource-manager==1.12.5  # GCP resource management
+google-auth==2.36.0         # GCP authentication
+
 # Data Processing
 pandas==2.2.3               # Data manipulation and analysis
 numpy==2.1.3               # Numerical computing support
 
 # Tableau Integration
-tableauhyperapi==0.0.19149  # Create and write Hyper files
+tableauhyperapi==0.0.23576  # Create and write Hyper files (latest version)
 
 # Utilities
 python-dotenv==1.0.1        # Environment variable management
