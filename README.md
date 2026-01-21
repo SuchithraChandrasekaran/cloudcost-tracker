@@ -1,134 +1,78 @@
-# cloudcost-sentinel
-AI-powered cloud cost optimizer that identifies $500K+ waste, forecasts spending, and generates one-click remediation scripts—all for $0.
+# cloudcost-tracker
+**Track and reduce cloud waste across AWS, Azure, and GCP using Tableau analytics.**
 
 <div align="center">
 
-# ☁️ CloudCost Sentinel
+# ☁️ CloudCost Tracker
 
 ### *The Zero-Waste Cloud Optimizer*
 
-[![Tableau Hackathon 2025](https://img.shields.io/badge/Tableau-Hackathon%202025-E97627?style=for-the-badge&logo=tableau&logoColor=white)](https://devpost.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![AWS](https://img.shields.io/badge/AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
 [![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://azure.microsoft.com/)
 [![GCP](https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/)
-
-**Identify $500K+ in cloud waste. Reduce bills by 35%. ROI: Immediate.**
-
-[🎥 Watch Demo](https://youtube.com) • [📊 Live Dashboard](https://tableau.com) • [📝 DevPost](https://devpost.com) 
 
 </div>
 
 ---
 
-## 🎯 The Problem
+## Overview
 
-Cloud waste is hemorrhaging money from companies worldwide:
+Cloud Cost Tracker is a data analytics solution that helps organizations identify and eliminate wasteful cloud spending. Built with Python for data collection and Tableau for visualization, it provides actionable insights to reduce cloud costs by 30-40%.
 
-- 💸 **30-40%** of cloud spending is wasted on idle resources
-- ⏰ **40+ hours/month** spent on manual cost audits
-- 🔥 **$500K+** average annual waste per mid-size company
-- 😰 DevOps and FinOps teams drowning in spreadsheets
+## Key Capabilities:
 
-**CloudCost Sentinel changes everything.**
+- Multi-cloud cost analysis (AWS, Azure, GCP)
+- Automated waste detection (idle resources, oversized instances, unused services)
+- Cost forecasting using time-series analysis
+- Interactive dashboards for different stakeholder groups
+- Actionable recommendations with estimated savings
 
----
+## Problem Statement
 
-## ✨ The Solution
+Organizations struggle with cloud cost management:
 
-A powerful Tableau-based analytics platform that:
+- 30-40% of cloud spending is wasted on idle or underutilized resources
+- Manual cost audits require 40+ hours per month
+- Limited visibility into cost drivers across multiple cloud providers
+- Delayed response time to cost anomalies (weeks vs. days)
 
-```
-📊 Multi-Cloud Analysis    →  AWS + Azure + GCP in one view
-🤖 AI-Powered Insights     →  Automatic waste detection
-🎮 Gamification            →  Team leaderboards & badges
-⚡ One-Click Actions       →  Generate scripts, send alerts
-🔮 Cost Forecasting        →  Predict future bills with 95% accuracy
-```
+## Solution Architecture
 
----
+### Data Pipeline
 
-## 🚀 Key Features
+- Collection: Python scripts pull billing data from cloud provider APIs
+- Processing: Data enrichment with utilization metrics and resource metadata
+- Analysis: Waste detection algorithms identify optimization opportunities
+- Storage: Data formatted into Tableau Hyper files for fast querying
+- Visualization: Interactive dashboards with drill-down capabilities
 
-### 1️⃣ **Executive Summary Dashboard**
-Get the big picture instantly:
-- 💰 Total monthly waste amount
-- 📈 Waste trend analysis (MoM, QoQ)
-- 🏆 Top 3 most wasteful services
-- 💡 Quick-win optimization opportunities
-
-### 2️⃣ **Resource Explorer**
-Drill down into every dollar spent:
-- 🔍 Multi-level drill-down: Account → Service → Resource
-- 🗺️ Geographic heat map of waste distribution
-- 🏷️ Tag-based filtering (environment, owner, cost center)
-- 📊 Utilization vs. Cost scatter plots
-
-### 3️⃣ **Optimization Advisor**
-AI-powered recommendations:
-- 🤖 Idle resource detection (<5% CPU for 7+ days)
-- 📏 Right-sizing recommendations
-- 💾 Reserved Instance opportunities
-- ⚠️ Risk-scored action items (High/Medium/Low)
-
-### 4️⃣ **Team Performance Dashboard**
-Gamification that drives behavior:
-- 🥇 Savings leaderboard by team
-- 🎖️ Individual engineer badges
-- 📊 Quarter-over-quarter comparisons
-- 🎯 Savings goals and achievements
-
-### 5️⃣ **Actionable Intelligence**
-One-click automation:
-```bash
-[Generate AWS CLI Script] → Stop idle instances instantly
-[Notify Owner via Slack]  → Alert resource owners
-[Create Jira Ticket]      → Auto-fill optimization tasks
-[Export PDF Report]       → Share with finance team
-```
-
-## 🏗️ System Architecture
+## System Architecture
 
 ### System Architecture Diagram
 
 ```mermaid
 flowchart TB
-    subgraph cloud ["☁️CLOUD PROVIDERS"]
+    subgraph cloud ["CLOUD PROVIDERS"]
         direction LR
-        aws["<b>AWS</b><br/>Cost Explorer API<br/>📊 90 days history<br/>⚡ Real-time"]
-        azure["<b>Azure</b><br/>Cost Management API<br/>📊 Historical + Forecast<br/>⚡ Real-time"]
-        gcp["<b>GCP</b><br/>Billing API<br/>📊 Detailed breakdown<br/>⚡ Optional"]
+        aws["AWS<br/>Cost Explorer API<br/>90 days history<br/>Real-time"]
+        azure["Azure<br/>Cost Management API<br/>Historical + Forecast<br/>Real-time"]
+        gcp["GCP<br/>Billing API<br/>Detailed breakdown<br/>Optional"]
     end
 
-    subgraph pipeline ["DATA PIPELINE(Python)"]
+    subgraph pipeline ["DATA PIPELINE (Python)"]
         direction TB
-        collect["<b>Data Collection</b><br/>• boto3 (AWS SDK)<br/>• azure-mgmt-costmanagement<br/>• google-cloud-billing"]
-        enrich["<b>Data Enrichment</b><br/>• Tag extraction<br/>• Utilization metrics<br/>• Resource metadata"]
-        waste["<b>Waste Detection</b><br/>• Idle: CPU <5% for 7+ days<br/>• Oversized: Memory <30%<br/>• Unused: 30+ days inactive"]
-        forecast["<b>AI Forecasting</b><br/>• Facebook Prophet<br/>• 30-day predictions<br/>• 95% confidence intervals"]
+        collect["Data Collection<br/>• boto3 (AWS SDK)<br/>• azure-mgmt-costmanagement<br/>• google-cloud-billing"]
+        enrich["Data Enrichment<br/>• Tag extraction<br/>• Utilization metrics<br/>• Resource metadata"]
+        waste["Waste Detection<br/>• Idle: CPU <5% for 7+ days<br/>• Oversized: Memory <30%<br/>• Unused: 30+ days inactive"]
+        forecast["AI Forecasting<br/>• Facebook Prophet<br/>• 30-day predictions<br/>• 95% confidence intervals"]
     end
 
-    subgraph tableau ["📊TABLEAU CLOUD"]
+    subgraph tableau ["TABLEAU CLOUD"]
         direction TB
-        hyper["<b>Hyper API</b><br/>🗃️ Generate .hyper file<br/>⚡ Optimized columnar storage"]
-        schema["<b>Semantic Model</b><br/>📋 5-Table Star Schema:<br/>• Cost_Facts<br/>• Resource_Dim<br/>• Account_Dim<br/>• Time_Dim<br/>• Waste_Dim"]
-        calcs["<b>Calculated Fields</b><br/>🧮 Logic Layer:<br/>• Waste_Score<br/>• Savings_Potential<br/>• ROI_Ratio<br/>• Forecast_Overrun"]
-        viz["<b>4 Dashboards</b><br/>📈 Executive Summary<br/>🔍 Resource Explorer<br/>💡 Optimization Advisor<br/>🏆 Team Performance"]
-    end
-
-    subgraph actions ["⚡ACTIONS LAYER"]
-        direction LR
-        ext["<b>Extensions API</b><br/>📱 Dashboard Interactions<br/>✅ Get selected rows"]
-        flask["<b>Flask Backend</b><br/>🐍 Python microservice<br/>🔧 Generate CLI scripts"]
-        outputs["<b>Outputs</b><br/>📥 Download .sh files<br/>📨 Slack webhooks<br/>🎫 Jira tickets"]
-    end
-
-    subgraph integrations ["🔗 OPTIONAL INTEGRATIONS"]
-        direction LR
-        slack["<b>Slack</b><br/>📢 Notify owners<br/>Free webhooks"]
-        jira["<b>Jira</b><br/>🎫 Create tickets<br/>Free API"]
-        vizql["<b>VizQL Service</b><br/>🌐 REST API<br/>External queries"]
+        hyper["Hyper API<br/>Generate .hyper file<br/>Optimized columnar storage"]
+        schema["Semantic Model<br/>5-Table Star Schema:<br/>• Cost_Facts<br/>• Resource_Dim<br/>• Account_Dim<br/>• Time_Dim<br/>• Waste_Dim"]
+        calcs["Calculated Fields<br/>Logic Layer:<br/>• Waste_Score<br/>• Savings_Potential<br/>• ROI_Ratio<br/>• Forecast_Overrun"]
+        viz["Dashboards<br/>Executive Summary<br/>Resource Explorer<br/>Optimization Advisor"]
     end
 
     aws --> collect
@@ -143,48 +87,35 @@ flowchart TB
     hyper --> schema
     schema --> calcs
     calcs --> viz
-    
-    viz --> ext
-    ext --> flask
-    flask --> outputs
-    
-    outputs -.-> slack
-    outputs -.-> jira
-    viz -.-> vizql
 
     classDef cloudStyle fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
     classDef pipelineStyle fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
     classDef tableauStyle fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px,color:#000
-    classDef actionsStyle fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
-    classDef integrationsStyle fill:#fce4ec,stroke:#880e4f,stroke-width:2px,color:#000
 
     class cloud cloudStyle
     class pipeline pipelineStyle
     class tableau tableauStyle
-    class actions actionsStyle
-    class integrations integrationsStyle
 ```
 ### DataFlow Sequence
 ```mermaid
 sequenceDiagram
     participant User
     participant Dashboard
-    participant Extensions
-    participant Flask
-    participant AWS CLI
+    participant Python
+    participant CloudAPI
 
-    User->>Dashboard: 1. Opens Optimization Advisor
-    Dashboard->>Dashboard: 2. Loads data from Hyper file
-    Dashboard->>User: 3. Shows wasteful resources
-    User->>Dashboard: 4. Selects idle EC2 instance
-    User->>Extensions: 5. Clicks "Generate Stop Script"
-    Extensions->>Dashboard: 6. Gets selected row data
-    Extensions->>Flask: 7. POST /generate_script
-    Flask->>Flask: 8. Creates AWS CLI command
-    Flask->>Extensions: 9. Returns .sh file
-    Extensions->>User: 10. Downloads stop-instance.sh
-    User->>AWS CLI: 11. Executes script locally
-    AWS CLI->>User: 12. Instance stopped ✅
+    User->>Dashboard: Opens dashboard
+    Dashboard->>Dashboard: Loads data from Hyper file
+    Dashboard->>User: Shows cost analysis
+    User->>Dashboard: Filters by service/region
+    Dashboard->>User: Updates visualizations
+    
+    Note over Python,CloudAPI: Background Process (Daily)
+    Python->>CloudAPI: Request billing data
+    CloudAPI->>Python: Return cost data
+    Python->>Python: Enrich with utilization metrics
+    Python->>Python: Calculate waste scores
+    Python->>Dashboard: Update Hyper file
 ```
 
 ### Semantic Model Details
@@ -244,123 +175,53 @@ erDiagram
         decimal savings_potential
     }
 ```
-### Security & Compliance
-```mermaid
-flowchart LR
-    A[Cloud APIs] -->|Encrypted TLS| B[Local Python]
-    B -->|Local filesystem| C[Hyper File]
-    C -->|HTTPS Upload| D[Tableau Cloud]
-    D -->|Role-based access| E[End Users]
-    
-    style A fill:#ffebee
-    style B fill:#fff3e0
-    style C fill:#e8f5e9
-    style D fill:#e3f2fd
-    style E fill:#f3e5f5
-```
-
 ## Tech Stack -**Tools & APIs**
 
 | Layer | Technology | Purpose |
 |-------|-----------|---------|
 | **Data Collection** | boto3, azure-mgmt, google-cloud-billing | Multi-cloud API integration |
 | **Processing** | Python 3.9+, Pandas, NumPy | Data transformation & enrichment |
-| **AI/ML** | Facebook Prophet, scikit-learn| Forecasting & anomaly detection |
 | **Storage** | Tableau Hyper API | High-performance data format |
 | **Visualization** | Tableau Cloud (Developer License) | Semantic modeling & dashboards |
-| **Automation** | AWS CLI, Slack Webhooks, Jira REST API | Actionable integrations |
 | **Version Control** | GitHub (Public Repo) | Code repository |
-| **Video Creation** | OBS Studio, DaVinci Resolve  | Demo video production |
 | **Diagrams** | Draw.io, Mermaid.js | Architecture & data model diagrams |
-| **Documentation** | Markdown, GitHub Pages | Project documentation |
 
 
+## Key Features
 
-### **⚡ Why This Works**
+### Executive Summary Dashboard
 
-1. **Cloud APIs are genuinely free** - AWS/Azure/GCP provide cost data APIs at zero cost because they *want* you to optimize (reduces their support burden)
+#### High-level metrics for leadership:
 
-2. **One-time data pulls** - No continuous infrastructure needed; refresh monthly or on-demand from your laptop
+- Total monthly cloud spend and waste amount
+- Month-over-month and quarter-over-quarter trends
+- Top 3 most wasteful services
+- Quick-win optimization opportunities
 
-3. **Tableau trial/developer access** - Hackathon participants get free temporary licenses; students get perpetual free access
+#### Resource Explorer Dashboard
 
-4. **Open-source everything else** - Python ecosystem + free video tools eliminate all paid software
+Detailed drill-down view for technical teams:
 
-5. **No hidden costs** - Unlike competitors, zero API rate limits, no per-user fees, no surprise charges
+- Multi-level analysis: Account → Service → Resource
+- Geographic heat map showing waste distribution by region
+- Tag-based filtering (environment, owner, cost center)
+- Utilization vs. cost analysis
 
-```mermaid
-graph LR
-    A[AWS Cost Explorer API] -->|Cost Data| D[Data Pipeline]
-    B[Azure Cost Mgmt API] -->|Cost Data| D
-    C[GCP Billing API] -->|Cost Data| D
-    D -->|Python Scripts| E[Data Enrichment]
-    E -->|Waste Metrics| F[Tableau Hyper File]
-    F -->|Upload| G[Tableau Cloud]
-    G -->|Semantic Model| H[Interactive Dashboards]
-    H -->|Actions| I[CLI Scripts / Webhooks]
+#### Dimension Tables:
+
+- Resource_Dim: resource_id, resource_type, instance_family, region, tags
+- Account_Dim: cloud_provider, account_id, account_name, business_unit
+- Time_Dim: date, week, month, quarter, year
+- Waste_Dim: waste_category, severity, recommendation_text, savings_potential
+
+## Key Calculated Fields:
+```
+Waste_Score = (Idle_Hours / Total_Hours) × Daily_Cost
+Savings_Potential = SUM(IF Utilization < 10% THEN Cost END)
+ROI_Ratio = Potential_Savings / Current_Spend
 ```
 
----
-
-## 📊 Semantic Data Model
-
-The sophisticated multi-dimensional model:
-
-```
-📦 CloudCost Semantic Model
-│
-├── 📋 Cost_Facts (Fact Table)
-│   ├── daily_spend
-│   ├── resource_hours
-│   ├── utilization_percent
-│   └── waste_amount
-│
-├── 🖥️ Resource_Dim
-│   ├── resource_id
-│   ├── resource_type (EC2, Lambda, S3, etc.)
-│   └── instance_family
-│
-├── ☁️ Account_Dim
-│   ├── cloud_provider (AWS/Azure/GCP)
-│   ├── account_id
-│   └── account_name
-│
-├── 📅 Time_Dim
-│   ├── date
-│   ├── week
-│   ├── month
-│   └── quarter
-│
-├── 🏷️ Tag_Dim
-│   ├── environment (prod/staging/dev)
-│   ├── owner
-│   ├── cost_center
-│   └── project
-│
-└── 💡 Waste_Dim
-    ├── waste_category (Idle/Oversized/Unused)
-    ├── severity
-    └── recommendation_text
-```
-
-### **Key Calculated Fields**
-
-```python
-Waste Score = (Idle Hours / Total Hours) × Daily Cost
-
-Savings Potential = SUM(IF [Utilization] < 10% THEN [Cost] END)
-
-ROI Ratio = [Potential Savings] / [Current Spend]
-
-Recommendation Priority = 
-    IF [Savings] > $1000 AND [Risk] = "Low" THEN "High"
-    ELSEIF [Savings] > $500 THEN "Medium"
-    ELSE "Low"
-```
-
----
-
-## 🛠️ Installation & Setup
+##  Installation & Setup
 
 ### **Prerequisites**
 - Python 3.9 or higher
@@ -369,8 +230,8 @@ Recommendation Priority =
 
 ### **1. Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/cloudcost-sentinel.git
-cd cloudcost-sentinel
+git clone https://github.com/username/cloudcost- tracker.git
+cd cloudcost- tracker
 ```
 
 ### **2. Set Up Python Environment**
@@ -385,15 +246,15 @@ pip install -r requirements.txt
 **AWS:**
 ```bash
 aws configure
-# Enter your AWS Access Key ID
-# Enter your AWS Secret Access Key
+# Enter   AWS Access Key ID
+# Enter   AWS Secret Access Key
 # Default region: us-east-1
 ```
 
 **Azure:**
 ```bash
 az login
-az account set --subscription "YOUR_SUBSCRIPTION_ID"
+az account set --subscription "SUBSCRIPTION_ID"
 ```
 
 **GCP:**
@@ -425,330 +286,73 @@ python scripts/create_hyper_file.py
 ### **7. Import Dashboards**
 ```bash
 # Import pre-built workbooks
-tableau import cloudcost_sentinel.twbx
+tableau import cloudcost.twbx
 ```
-
 ---
-
-## 📈 Usage Examples
-
-### **Scenario 1: Finance Team Monthly Review**
-
+## Project Structure
 ```
-Q: "Why was last month's bill $50K over budget?"
-
-A: [Open Executive Summary]
-   → Cost spike chart shows 300% increase in ML services
-   → Drill down to specific training instances
-   → Explain Data reveals: "Instances ran 24/7 but only trained 2 hours/day"
-   → Action: Click [Generate Stop Schedule] button
-   → Result: Automated script saves $45K/month
+cloud-cost-tracker/
+├── scripts/
+│   ├── collect_aws_costs.py      # AWS Cost Explorer API integration
+│   ├── collect_azure_costs.py    # Azure Cost Management API
+│   ├── collect_gcp_costs.py      # GCP Billing API integration
+│   └── combine_clouds.py         # Multi-cloud data consolidation
+├── dashboards/
+│   ├── executive_summary.twb     # Leadership dashboard
+│   ├── resource_explorer.twb     # Technical deep-dive dashboard
+│   └── optimization_advisor.twb  # Recommendations dashboard
+├── data/
+│   └── cloudcost_data.hyper      # Tableau data extract
+├── docs/
+│   ├── Calculations.md           # Calculated field definitions
+│   ├── DATA_MODEL.md             # Data model documentation
+│   ├── WASTE_RULES_AWS.md        # AWS-specific waste detection rules
+│   └── PITCH.md                  # Project pitch deck
+├── requirements.txt
+├── LICENSE
+└── README.md
 ```
+## Waste Detection Rules
+### Idle Resources:
 
-### **Scenario 2: DevOps Team Optimization**
+- CPU utilization below 5% for 7+ consecutive days
+- Network traffic below 1 MB/day for 7+ days
+- No active connections for 14+ days
 
-```
-Q: "Which resources should we optimize first?"
+### Oversized Instances:
 
-A: [Open Optimization Advisor]
-   → Sorted by Savings Potential
-   → Top recommendation: 47 idle EC2 instances
-   → Estimated savings: $12,000/month
-   → Risk level: Low (test environment)
-   → Action: Click [Notify Owners] → Slack messages sent
-```
+- Memory utilization below 30% consistently
+- CPU utilization below 20% with oversized instance type
+- Storage volumes with less than 50% utilization
 
-### **Scenario 3: Engineering Team Gamification**
+### Unused Resources:
 
-```
-Q: "How is my team performing on cost optimization?"
+- Unattached EBS volumes (30+ days)
+- Elastic IPs without associated instances
+- Load balancers with no active targets
 
-A: [Open Team Performance Dashboard]
-   → Your team rank: 🥈 2nd place
-   → Q3 savings: $32,000
-   → Next badge: "Cloud Optimizer Gold" (need $8K more)
-   → Individual achievements visible to team
-```
+## Expected Outcomes
+### Cost Reduction:
 
----
+- Average 30-35% reduction in cloud waste
+- Typical savings of $500K+ annually for mid-size companies
 
-## 🤖 AI & Machine Learning Features
+### Time Savings:
 
-### **Cost Forecasting**
-Powered by Facebook Prophet:
-```python
-from prophet import Prophet
+- Reduce manual audit time from 40 hours/month to 2 hours/month
+- Enable same-day response to cost anomalies (vs. 2-3 weeks previously)
 
-# Train on 90 days of historical data
-# Predict next 30 days with 95% confidence intervals
-# Flag predicted budget overruns 7 days in advance
-```
+### Visibility Improvements:
 
-### **Anomaly Detection**
-Tableau's built-in analytics:
-- **Explain Data**: Automatically identifies drivers of cost spikes
-- **Clustering**: Groups resources with similar waste patterns
-- **Trend Analysis**: Highlights unusual spending patterns
+- Real-time cost tracking vs. quarterly reviews
+- Multi-cloud view in single dashboard
+- Granular drill-down to individual resources
 
-### **Recommendation Engine**
-Rule-based intelligence:
-```python
-IF cpu_utilization < 5% FOR 7 days THEN flag_as_idle
-IF memory_utilization < 20% AND instance_size > "large" THEN recommend_downsize
-IF reserved_instance_coverage < 60% THEN recommend_ri_purchase
-```
+### Documentation
 
----
+#### Detailed documentation available in the docs/ directory:
 
-## 🎯 Impact & ROI
-
-### **Proven Results**
-
-| Metric | Before CloudCost Sentinel | After CloudCost Sentinel | Improvement |
-|--------|--------------------------|--------------------------|-------------|
-| Monthly Waste | $125,000 | $48,000 | **62% reduction** |
-| Manual Audit Time | 40 hours/month | 2 hours/month | **95% time saved** |
-| Cost Visibility | Quarterly reviews | Real-time | **Instant insights** |
-| Action Response Time | 2-3 weeks | Same day | **10x faster** |
-| Team Engagement | Low | High (gamification) | **🏆 Cultural shift** |
-
-### **Financial Impact**
-```
-Annual Cloud Spend:        $3,000,000
-Waste Identified:          $1,200,000 (40%)
-Actionable Savings:        $900,000 (30% of total)
-Implementation Cost:       $0 (free APIs + Tableau license)
-
-ROI = $900,000 / $0 = ∞
-Payback Period = 0 seconds
-```
-
-## 📁 Project Structure
-
-```
-cloudcost-sentinel/
-│
-├── 📂 scripts/
-│   ├── collect_aws_costs.py          # AWS Cost Explorer API integration
-│   ├── collect_azure_costs.py        # Azure Cost Management API
-│   ├── collect_gcp_costs.py          # GCP Billing API
-│   ├── merge_and_enrich.py           # Data consolidation & enrichment
-│   ├── create_hyper_file.py          # Tableau Hyper file generation
-│   ├── forecast_costs.py             # Facebook Prophet forecasting
-│   └── generate_cli_scripts.py       # Action button backend
-│
-├── 📂 dashboards/
-│   ├── executive_summary.twb         # High-level KPI dashboard
-│   ├── resource_explorer.twb         # Detailed drill-down view
-│   ├── optimization_advisor.twb      # AI recommendations
-│   └── team_performance.twb          # Gamification dashboard
-│
-├── 📂 data/
-│   ├── cloudcost_data.hyper          # Tableau data extract
-│   ├── cost_history.csv              # Raw cost data backup
-│   └── recommendations.csv           # Generated action items
-│
-├── 📂 docs/
-│   ├── architecture.md               # System architecture diagram
-│   ├── DATA_MODEL.md                 # Data model documentation
-│   ├── api-setup.md                  # Cloud API configuration guide
-│   └── user-guide.md                 # End-user documentation
-│
-├── 📂 tests/
-│   ├── test_data_pipeline.py         # Unit tests for data collection
-│   └── test_calculations.py          # Validate calculated fields
-│
-├── 📄 requirements.txt                # Python dependencies
-├── 📄 LICENSE                         # MIT License
-├── 📄 .gitignore                      # Git ignore rules
-└── 📄 README.md                       # This file
-```
-
----
-
-## 🔧 Configuration
-
-### **Environment Variables**
-
-Create a `.env` file in the project root:
-
-```bash
-# AWS Configuration
-AWS_ACCESS_KEY_ID=your_access_key
-AWS_SECRET_ACCESS_KEY=your_secret_key
-AWS_DEFAULT_REGION=us-east-1
-
-# Azure Configuration
-AZURE_SUBSCRIPTION_ID=your_subscription_id
-AZURE_TENANT_ID=your_tenant_id
-AZURE_CLIENT_ID=your_client_id
-AZURE_CLIENT_SECRET=your_client_secret
-
-# GCP Configuration
-GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
-GCP_PROJECT_ID=your_project_id
-
-# Tableau Configuration
-TABLEAU_SERVER_URL=https://your-instance.online.tableau.com
-TABLEAU_SITE_ID=your_site
-TABLEAU_TOKEN_NAME=your_token_name
-TABLEAU_TOKEN_SECRET=your_token_secret
-
-# Slack Integration (Optional)
-SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
-
-# Jira Integration (Optional)
-JIRA_URL=https://your-domain.atlassian.net
-JIRA_EMAIL=your_email@company.com
-JIRA_API_TOKEN=your_jira_api_token
-```
-
----
-
-## 🧪 Testing
-
-Run the test suite:
-
-```bash
-# Run all tests
-pytest tests/
-
-# Run specific test file
-pytest tests/test_data_pipeline.py
-
-# Run with coverage report
-pytest --cov=scripts tests/
-```
-
-### **Sample Test Output**
-```
-✅ test_aws_cost_collection .............. PASSED
-✅ test_azure_cost_collection ............ PASSED
-✅ test_gcp_cost_collection .............. PASSED
-✅ test_data_enrichment .................. PASSED
-✅ test_waste_calculation ................ PASSED
-✅ test_hyper_file_creation .............. PASSED
-
-Coverage: 94%
-```
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m "Add amazing feature"
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **Open a Pull Request**
-
-### **Coding Standards**
-- Follow PEP 8 style guide for Python
-- Add docstrings to all functions
-- Write unit tests for new features
-- Update documentation as needed
-
----
-
-## 📊 Sample Dashboards
-
-### **Executive Summary**
-![Executive Summary Dashboard](docs/images/executive-summary.png)
-*Real-time view of total waste, trend analysis, and top opportunities*
-
-### **Resource Explorer**
-![Resource Explorer](docs/images/resource-explorer.png)
-*Drill-down capability across accounts, services, and individual resources*
-
-### **Optimization Advisor**
-![Optimization Advisor](docs/images/optimization-advisor.png)
-*AI-powered recommendations with one-click actions*
-
-### **Team Performance**
-![Team Performance](docs/images/team-performance.png)
-*Gamified leaderboard driving cost-conscious culture*
-
----
-
-## 📅 Roadmap
-
-### **Phase 1: Foundation** ✅ Complete
-- [x] Multi-cloud data collection
-- [x] Tableau semantic model
-- [x] Core dashboards
-
-### **Phase 2: Intelligence** ✅ Complete
-- [x] AI-powered forecasting
-- [x] Anomaly detection
-- [x] Recommendation engine
-
-### **Phase 3: Automation** ✅ Complete
-- [x] One-click actions
-- [x] Slack/Jira integration
-- [x] CLI script generation
-
-### **Phase 4: Future Enhancements** 🚧 Planned
-- [ ] Kubernetes cost allocation
-- [ ] Carbon footprint tracking
-- [ ] Custom alert rules
-- [ ] Mobile app
-- [ ] Multi-tenant SaaS version
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-```
-MIT License
-
-Copyright (c) 2025 CloudCost Sentinel Team
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software...
-```
-
----
-
-## 🙏 Acknowledgments
-
-- **Tableau Hackathon 2025** - For inspiring this project
-- **AWS, Azure, GCP** - For providing free billing APIs
-- **Facebook Prophet** - For powerful time-series forecasting
-- **Open Source Community** - For incredible tools and libraries
-
----
-
-## Contact
-
-- **Project Link:** [https://github.com/suchithrachandrasekaran/cloudcost-sentinel](https://github.com/yourusername/cloudcost-sentinel)
-- **Demo Video:** [https://youtube.com/watch?v=your-video](https://youtube.com/watch?v=your-video)
-- **Live Dashboard:** [https://tableau.com/your-dashboard](https://tableau.com/your-dashboard)
-- **DevPost:** [https://devpost.com/your-project](https://devpost.com/your-project)
-
----
-
-<div align="center">
-
-### ⭐ Star this repo if you found it helpful!
-
-**Made for Tableau Hackathon 2025** 🏆
-
-[⬆ Back to Top](#️-cloudcost-sentinel)
-
-</div>
+- Calculations.md: Definitions of all calculated fields
+- DATA_MODEL.md: Complete data model specifications
+- WASTE_RULES_AWS.md: AWS waste detection algorithms
+- PITCH.md: Project overview and business case
