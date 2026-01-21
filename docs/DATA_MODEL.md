@@ -1,7 +1,7 @@
-# CloudCost Sentinel - Data Model Documentation
+# CloudCost  tracker - Data Model Documentation
 
 ## Overview
-This document defines the complete semantic data model for CloudCost Sentinel, including the Entity Relationship Diagram (ERD) and detailed data dictionary. The model uses a **Star Schema** design pattern with one central fact table surrounded by four dimension tables.
+This document defines the complete semantic data model for CloudCost  tracker, including the Entity Relationship Diagram (ERD) and detailed data dictionary. The model uses a **Star Schema** design pattern with one central fact table surrounded by four dimension tables.
 
 ---
 
