@@ -230,8 +230,8 @@ ROI_Ratio = Potential_Savings / Current_Spend
 
 ### **1. Clone the Repository**
 ```bash
-git clone https://github.com/username/cloudcost- tracker.git
-cd cloudcost- tracker
+git clone https://github.com/SuchithraChandrasekaran/cloudcost-tracker.git
+cd cloudcost-tracker
 ```
 
 ### **2. Set Up Python Environment**
