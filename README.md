@@ -281,7 +281,7 @@ python scripts/create_hyper_file.py
 1. Log in to Tableau Cloud
 2. Navigate to **Explore** → **New** → **Data Source**
 3. Upload `cloudcost_data.hyper`
-4. Configure semantic relationships (see [docs/semantic-model.md](docs/semantic-model.md))
+4. Configure semantic relationships 
 
 ### **7. Import Dashboards**
 ```bash
